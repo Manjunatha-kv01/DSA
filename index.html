@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Worldwide DSA & Python Learning Platforms</title>
+<style>
+:root {
+  --bg:#f6f8fb; --surface:#fff; --text:#172033; --muted:#64748b;
+  --border:#dbe2ea; --accent:#2563eb; --accent-soft:#eff6ff;
+  --free:#166534; --free-bg:#dcfce7; --paid:#92400e; --paid-bg:#fef3c7;
+  --both:#6d28d9; --both-bg:#ede9fe; --shadow:0 12px 35px rgba(15,23,42,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(135deg,#f8fafc,#eef4ff);color:var(--text);min-height:100vh}
+.container{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:42px 0 55px}
+.hero{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:32px;box-shadow:var(--shadow);margin-bottom:22px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+h1{font-size:clamp(28px,5vw,46px);line-height:1.08;letter-spacing:-.035em;margin-bottom:12px}
+.subtitle{color:var(--muted);font-size:16px;line-height:1.65;max-width:780px}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.legend span,.badge{font-size:12px;font-weight:700;border-radius:999px;padding:6px 10px}
+.free{background:var(--free-bg);color:var(--free)}
+.paid{background:var(--paid-bg);color:var(--paid)}
+.both{background:var(--both-bg);color:var(--both)}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:20px;box-shadow:var(--shadow)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tab{border:1px solid var(--border);background:#fff;color:var(--muted);padding:10px 14px;border-radius:999px;font-weight:700;font-size:13px;cursor:pointer;transition:.18s}
+.tab:hover{border-color:#a9b6c7;color:var(--text)}
+.tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.meta{font-size:13px;color:var(--muted);margin:2px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.card{display:flex;align-items:center;gap:12px;padding:14px;text-decoration:none;color:inherit;background:#fbfdff;border:1px solid var(--border);border-radius:14px;transition:.18s}
+.card:hover{transform:translateY(-2px);border-color:#9bb4d8;box-shadow:0 8px 20px rgba(37,99,235,.08)}
+.ico{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;flex-shrink:0;font-weight:800;font-size:15px}
+.inf{min-width:0;flex:1}
+.nm{font-size:14px;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px}
+.ur{font-size:11px;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{flex-shrink:0}
+.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:18px}
+@media(max-width:600px){
+ .container{width:min(100% - 20px,1180px);padding-top:20px}
+ .hero{padding:23px;border-radius:18px}
+ .panel{padding:14px;border-radius:16px}
+ .grid{grid-template-columns:1fr}
+ .card{padding:12px}
+}
+</style>
+</head>
+<body>
+<main class="container">
+<section class="hero">
+  <div class="eyebrow">Learning Resource Directory</div>
+  <h1>Worldwide DSA & Python Platforms</h1>
+  <p class="subtitle">A curated directory of competitive programming, structured courses, interview preparation, university courseware, and YouTube resources for learning Data Structures & Algorithms and Python.</p>
+  <div class="legend">
+    <span class="free">Free</span>
+    <span class="paid">Paid</span>
+    <span class="both">Free + Paid</span>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="tabs" id="tabs"></div>
+  <div id="body"></div>
+</section>
+<div class="footer">Click any platform to open its resource page.</div>
+</main>
+
+<script>
+const C=[
+  {icon:"ti-code",lbl:"Competitive",desc:"DSA problem-solving and global contest platforms",items:[
+    {n:"LeetCode",u:"https://leetcode.com/studyplan/",t:"bt"},
+    {n:"HackerRank",u:"https://www.hackerrank.com/domains/data-structures",t:"fr"},
+    {n:"Codeforces",u:"https://codeforces.com/edu/courses",t:"fr"},
+    {n:"AtCoder",u:"https://atcoder.jp/",t:"fr"},
+    {n:"SPOJ",u:"https://www.spoj.com/",t:"fr"},
+    {n:"CSES Problem Set",u:"https://cses.fi/problemset/",t:"fr"},
+    {n:"USACO Guide",u:"https://usaco.guide/",t:"fr"},
+    {n:"HackerEarth",u:"https://www.hackerearth.com/practice/data-structures/",t:"bt"},
+    {n:"Kattis",u:"https://open.kattis.com/",t:"fr"},
+    {n:"Project Euler",u:"https://projecteuler.net/",t:"fr"},
+    {n:"Advent of Code",u:"https://adventofcode.com/",t:"fr"},
+    {n:"TopCoder",u:"https://www.topcoder.com/community/competitive-programming/",t:"bt"},
+  ]},
+  {icon:"ti-book",lbl:"Online Courses",desc:"Structured global learning platforms for DSA and Python",items:[
+    {n:"Coursera — DSA Specialization",u:"https://www.coursera.org/specializations/data-structures-algorithms",t:"bt"},
+    {n:"edX — Data Structures",u:"https://www.edx.org/learn/data-structures",t:"bt"},
+    {n:"Udemy — DSA Courses",u:"https://www.udemy.com/topic/data-structures/",t:"pd"},
+    {n:"freeCodeCamp — Python",u:"https://www.freecodecamp.org/learn/scientific-computing-with-python/",t:"fr"},
+    {n:"Codecademy — DSA Python",u:"https://www.codecademy.com/learn/learn-data-structures-and-algorithms-with-python",t:"bt"},
+    {n:"Exercism — Python Track",u:"https://exercism.org/tracks/python",t:"fr"},
+    {n:"Educative.io — DSA Python",u:"https://www.educative.io/courses/data-structures-in-python",t:"pd"},
+    {n:"DataCamp — Python",u:"https://www.datacamp.com/",t:"bt"},
+    {n:"Kaggle Learn — Python",u:"https://www.kaggle.com/learn/python",t:"fr"},
+    {n:"Brilliant — CS Algorithms",u:"https://brilliant.org/courses/computer-science-algorithms/",t:"pd"},
+    {n:"Pluralsight — DSA Python",u:"https://www.pluralsight.com/paths/data-structures-and-algorithms-with-python",t:"pd"},
+    {n:"LinkedIn Learning — DSA",u:"https://www.linkedin.com/learning/topics/data-structures-and-algorithms",t:"pd"},
+  ]},
+  {icon:"ti-target",lbl:"Interview Prep",desc:"FAANG-focused technical interview preparation",items:[
+    {n:"AlgoExpert",u:"https://www.algoexpert.io/",t:"pd"},
+    {n:"InterviewBit",u:"https://www.interviewbit.com/",t:"bt"},
+    {n:"DesignGurus — Grokking",u:"https://www.designgurus.io/",t:"pd"},
+    {n:"Tech Interview Handbook",u:"https://www.techinterviewhandbook.org/",t:"fr"},
+    {n:"Grind 75",u:"https://www.techinterviewhandbook.org/grind75/",t:"fr"},
+    {n:"Blind 75 Questions",u:"https://www.techinterviewhandbook.org/best-practice-questions/",t:"fr"},
+    {n:"Interview Cake",u:"https://www.interviewcake.com/",t:"pd"},
+    {n:"Pramp — Mock Interviews",u:"https://www.pramp.com/",t:"fr"},
+  ]},
+  {icon:"ti-building",lbl:"University",desc:"Open courseware from world-class universities",items:[
+    {n:"MIT 6.006 — Intro to Algorithms",u:"https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/",t:"fr"},
+    {n:"Harvard CS50P — Python",u:"https://cs50.harvard.edu/python/2022/",t:"fr"},
+    {n:"Stanford Algorithms",u:"https://www.coursera.org/specializations/algorithms",t:"bt"},
+    {n:"Princeton Algorithms",u:"https://algs4.cs.princeton.edu/home/",t:"fr"},
+    {n:"UC San Diego — Algo Toolbox",u:"https://www.coursera.org/learn/algorithmic-toolbox",t:"bt"},
+    {n:"MIT 6.046 — Adv Algorithms",u:"https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/",t:"fr"},
+  ]},
+  {icon:"ti-video",lbl:"YouTube",desc:"Free video channels for DSA and Python learning",items:[
+    {n:"Khan Academy — Algorithms",u:"https://www.khanacademy.org/computing/computer-science/algorithms",t:"fr"},
+    {n:"Abdul Bari",u:"https://www.youtube.com/@abdul_bari",t:"fr"},
+    {n:"William Fiset",u:"https://www.youtube.com/@WilliamFiset-videos",t:"fr"},
+    {n:"Back to Back SWE",u:"https://www.youtube.com/@BackToBackSWE",t:"fr"},
+    {n:"mycodeschool",u:"https://www.youtube.com/@mycodeschool",t:"fr"},
+    {n:"CS Dojo",u:"https://www.youtube.com/@CSDojo",t:"fr"},
+    {n:"Errichto Algorithms",u:"https://www.youtube.com/@Errichto",t:"fr"},
+    {n:"Nick White — LeetCode",u:"https://www.youtube.com/@NickWhite",t:"fr"},
+  ]},
+];
+
+const BG={fr:'var(--free-bg)',pd:'var(--paid-bg)',bt:'var(--both-bg)'};
+const TX={fr:'var(--free)',pd:'var(--paid)',bt:'var(--both)'};
+const LBL={fr:'Free',pd:'Paid',bt:'Free + Paid'};
+
+function iconFor(type) {
+  const icons={'ti-code':'&lt;/&gt;','ti-book':'📖','ti-target':'◎','ti-building':'⌂','ti-video':'▶'};
+  return icons[type] || '•';
+}
+
+function show(idx) {
+  document.querySelectorAll('.tab').forEach((b,i)=>b.classList.toggle('active',i===idx));
+  const c=C[idx];
+  document.getElementById('body').innerHTML=`
+    <p class="meta">${c.items.length} platforms — ${c.desc}</p>
+    <div class="grid">
+      ${c.items.map(p=>`
+        <a class="card" href="${p.u}" target="_blank" rel="noopener noreferrer">
+          <div class="ico" style="background:${BG[p.t]};color:${TX[p.t]}">${iconFor(c.icon)}</div>
+          <div class="inf">
+            <div class="nm">${p.n}</div>
+            <div class="ur">${p.u.replace(/https?:\/\//,'').split('/')[0]}</div>
+          </div>
+          <span class="badge" style="background:${BG[p.t]};color:${TX[p.t]}">${LBL[p.t]}</span>
+        </a>
+      `).join('')}
+    </div>`;
+}
+
+document.getElementById('tabs').innerHTML=C.map((c,i)=>`
+  <button class="tab${i===0?' active':''}" onclick="show(${i})">${iconFor(c.icon)} &nbsp;${c.lbl}</button>
+`).join('');
+
+show(0);
+</script>
+</body>
+</html>
